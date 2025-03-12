@@ -1,0 +1,34 @@
+name: Update client
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-client:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create temp directory
+          mkdir ./temp/
+      - name: Download Moira OpenAPI Specification
+          wget -O ./temp/moira-openapi-spec.yaml --header=accept:application/yaml $MOIRA_OPENAPI_SPEC_FETCH_URI
+      - name: Setup Kiota
+        uses: microsoft/setup-kiota@v0.5.0
+        with:
+          version: '1.24.0'
+      - name: Update client
+        run: |
+          kiota update --output ./Moira.Client/
+      - name: Cleanup
+        run: |
+          rm -r ./temp/
+      - name: Commit changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git add .
+          git commit --message "Update client"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

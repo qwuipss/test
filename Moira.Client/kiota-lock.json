@@ -1,0 +1,26 @@
+{
+  "descriptionHash": "6F6CCBB3C57F523D4A41E96F238EAD839181B631ED81D7C5B1F869B1960C076E7C1CEB6FAEBFAC5EC4510967770E891CD4E453C5C65C55F560751CC1E49EC927",
+  "descriptionLocation": "../../../moira-cs-client/moira-csharp-client/api.yaml",
+  "lockFileVersion": "1.0.0",
+  "kiotaVersion": "1.23.0",
+  "clientClassName": "MoiraClient",
+  "typeAccessModifier": "Public",
+  "clientNamespaceName": "Moira.Client",
+  "language": "CSharp",
+  "usesBackingStore": false,
+  "excludeBackwardCompatible": true,
+  "includeAdditionalData": false,
+  "disableSSLValidation": false,
+  "serializers": [
+    "Microsoft.Kiota.Serialization.Json.JsonSerializationWriterFactory"
+  ],
+  "deserializers": [
+    "Microsoft.Kiota.Serialization.Json.JsonParseNodeFactory"
+  ],
+  "structuredMimeTypes": [
+    "application/json"
+  ],
+  "includePatterns": [],
+  "excludePatterns": [],
+  "disabledValidationRules": []
+}
