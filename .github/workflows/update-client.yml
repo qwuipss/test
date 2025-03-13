@@ -18,25 +18,25 @@ jobs:
         uses: microsoft/setup-kiota@v0.5.0
         with:
           version: '1.24.0'
-      - name: Update client
-        run: kiota update --output ./Moira.Client/
-      - name: Cleanup
-        run: rm -r ./.temp/
       - name: Setup Git config & new branch
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email 'github-actions-bot@users.noreply.github.com'
           branchName="update-client/$(date +%s)"
-          git branch $branchName
-          git switch $branchName
-          echo Switched to new branch "$branchName"
+          git checkout -b $branchName
           echo "branchName=$branchName" >> "$GITHUB_ENV"
+      - name: Update client
+        run: kiota update --output ./Moira.Client/
+      - name: Cleanup
+        run: rm -r ./.temp/
       - name: Commit changes
         run: |
           git add .
           git commit --message "Update client"
       - name: Push changes
-        run: git push
+        env:
+          BRANCH_NAME: ${{ env.branchName }}
+        run: git push --set-upstream origin $BRANCH_NAME
       - name: Create Pull request
         run: gh pr create -B main -H $BRANCH_NAME --title 'Update client' --body 'Created by GitHub Actions'
         env:
