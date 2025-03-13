@@ -33,6 +33,12 @@ jobs:
           echo "branchName=$branchName" >> "$GITHUB_ENV"
       - name: Update client
         run: kiota update --output ./Moira.Client/
+      - name: Delete temp directory
+        run: rm -r ./.temp/
+      - name: Commit changes
+        run: |
+          git add .
+          git commit --message "Update client"
       - name: Ensure no Kiota log file
         run: |
           filePath=$(./Moira.Client/.kiota.log)
@@ -40,12 +46,6 @@ jobs:
             cat $filePath
             exit 1
           fi
-      - name: Delete temp directory
-        run: rm -r ./.temp/
-      - name: Commit changes
-        run: |
-          git add .
-          git commit --message "Update client"
       - name: Push changes
         env:
           BRANCH_NAME: ${{ env.branchName }}
