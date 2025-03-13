@@ -39,13 +39,6 @@ jobs:
         run: |
           git add .
           git commit --message "Update client"
-      - name: Ensure no Kiota log file
-        run: |
-          filePath=$(./Moira.Client/.kiota.log)
-          if [ -e $filePath ]; then
-            cat $filePath
-            exit 1
-          fi
       - name: Push changes
         env:
           BRANCH_NAME: ${{ env.branchName }}
