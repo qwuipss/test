@@ -17,7 +17,8 @@ jobs:
       - name: Setup Kiota
         uses: microsoft/setup-kiota@v0.5.0
         with:
-          version: '1.24.0'
+          version: latest
+          includePreRelease: 'false'
       - name: Setup Git config & new branch
         run: |
           git config --local user.name "github-actions[bot]"
@@ -27,7 +28,7 @@ jobs:
           echo "branchName=$branchName" >> "$GITHUB_ENV"
       - name: Update client
         run: kiota update --output ./Moira.Client/
-      - name: Cleanup
+      - name: Delete temp directory
         run: rm -r ./.temp/
       - name: Commit changes
         run: |
