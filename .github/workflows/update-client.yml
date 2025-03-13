@@ -22,7 +22,7 @@ jobs:
         run: kiota update --output ./Moira.Client/
       - name: Cleanup
         run: rm -r ./.temp/
-      - name: Commit changes
+      - name: Setup Git config & new branch
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email 'github-actions-bot@users.noreply.github.com'
@@ -31,15 +31,14 @@ jobs:
           git switch $branchName
           echo Switched to new branch "$branchName"
           echo "branchName=$branchName" >> "$GITHUB_ENV"
+      - name: Commit changes
+        run: |
           git add .
           git commit --message "Update client"
       - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ env.branchName }}
+        run: git push
       - name: Create Pull request
-        run: gh pr create -B main -H $BRANCH_NAME --title 'Update client' --body 'Created by GitHub action'
+        run: gh pr create -B main -H $BRANCH_NAME --title 'Update client' --body 'Created by GitHub Actions'
         env:
           GH_TOKEN: ${{ github.token }}
           BRANCH_NAME: ${{ env.branchName }}
