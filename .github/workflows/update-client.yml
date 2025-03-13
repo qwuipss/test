@@ -35,7 +35,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }}
+          branch: $branchName
       - name: Create Pull request
         run: gh pr create -B main -H $branchName --title 'Update client' --body 'Created by GitHub action'
         env:
