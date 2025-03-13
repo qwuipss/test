@@ -38,3 +38,5 @@ jobs:
           branch: ${{ github.ref }}
       - name: Create Pull request
         run: gh pr create -B main -H $branchName --title 'Update client' --body 'Created by GitHub action'
+        env:
+          GH_TOKEN: ${{ github.token }}
