@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.1;net6.0;net8.0</TargetFrameworks>
+        <RootNamespace>Moira.ApiClient</RootNamespace>
+        <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Version>2.2.8</Version>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <Title>Moira.ApiClient</Title>
+        <Description>Client for Moira API</Description>
+        <Authors>moira-alert</Authors>
+        <PackageTags>moira moira-alert</PackageTags>
+        <PackageProjectUrl>https://github.com/qwuipss/test</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/qwuipss/test</RepositoryUrl>
+        <PackageIcon>moira-logo.png</PackageIcon>
+        <PackageLicenseUrl>LICENSE</PackageLicenseUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="../LICENSE" Pack="true" PackagePath="/"/>
+        <None Include="../README.md" Pack="true" PackagePath="/"/>
+        <None Include="../moira-logo.png" Pack="true" PackagePath="/"/>
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Kiota.Abstractions" Version="1.17.1"/>
+        <PackageReference Include="Microsoft.Kiota.Serialization.Json" Version="1.17.1" PrivateAssets="All"/>
+    </ItemGroup>
+
+</Project>
