@@ -15,7 +15,7 @@ jobs:
 
       - name: Check Tag Version
         run: |
-          if [[ $VERSION_TAG !=~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+          if [[ ! $VERSION_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo Version Tag "$VERSION_TAG" does not match the regular expression "^[0-9]+\.[0-9]+\.[0-9]+$"
           fi
         env:
