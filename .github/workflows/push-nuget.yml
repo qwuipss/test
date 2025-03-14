@@ -56,7 +56,7 @@ jobs:
         run: dotnet pack --no-build --configuration Release --output ./.temp/
 
       - name: Create GitHub release
-        run: gh release create v$VERSION_TAG -title v$VERSION_TAG --verify-tag
+        run: gh release create v$VERSION_TAG --title v$VERSION_TAG --verify-tag
         env:
           GH_TOKEN: ${{ github.token }}
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
