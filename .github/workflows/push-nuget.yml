@@ -63,7 +63,7 @@ jobs:
 
       - name: Push package to NuGet.org
         run: |
-          dotnet nuget push ./.temp/Moira.ApiClient.VERSION_TAG.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+          dotnet nuget push ./.temp/Moira.ApiClient.$VERSION_TAG.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
