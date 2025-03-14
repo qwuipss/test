@@ -37,7 +37,7 @@ jobs:
           echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_ENV"
 
       - name: Update client
-        run: kiota update --output ./Moira.Client/
+        run: kiota update --output ./Moira.ApiClient/
 
       - name: Commit changes
         run: |
