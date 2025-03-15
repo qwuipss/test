@@ -16,15 +16,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-        if: github.event.inputs.commit_hash == 'latest'
         with:
-          fetch-tags: 'true'
-
-      - uses: actions/checkout@v4
-        if: github.event.inputs.commit_hash != 'latest'
-        with:
-          ref: ${{ github.event.inputs.commit_hash }}
-          fetch-tags: 'true'
+          fetch-depth: '0'
             
       - name: Check Version Tag format
         run: |
