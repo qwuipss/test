@@ -103,7 +103,7 @@ namespace Moira.ApiClient.Trigger
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Moira.ApiClient.Models.Api.ErrorInvalidRequestExample">When receiving a 400 status code</exception>
+        /// <exception cref="global::Moira.ApiClient.Trigger.SaveTriggerResponse400Error">When receiving a 400 status code</exception>
         /// <exception cref="global::Moira.ApiClient.Models.Api.ErrorRenderExample">When receiving a 422 status code</exception>
         /// <exception cref="global::Moira.ApiClient.Models.Api.ErrorInternalServerExample">When receiving a 500 status code</exception>
         /// <exception cref="global::Moira.ApiClient.Models.Api.ErrorRemoteServerUnavailableExample">When receiving a 503 status code</exception>
@@ -120,7 +120,7 @@ namespace Moira.ApiClient.Trigger
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "400", global::Moira.ApiClient.Models.Api.ErrorInvalidRequestExample.CreateFromDiscriminatorValue },
+                { "400", global::Moira.ApiClient.Trigger.SaveTriggerResponse400Error.CreateFromDiscriminatorValue },
                 { "422", global::Moira.ApiClient.Models.Api.ErrorRenderExample.CreateFromDiscriminatorValue },
                 { "500", global::Moira.ApiClient.Models.Api.ErrorInternalServerExample.CreateFromDiscriminatorValue },
                 { "503", global::Moira.ApiClient.Models.Api.ErrorRemoteServerUnavailableExample.CreateFromDiscriminatorValue },
