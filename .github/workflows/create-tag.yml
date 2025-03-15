@@ -36,3 +36,4 @@ jobs:
           git push origin --tags
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
+          COMMIT_HASH: ${{ github.event.inputs.commit_hash }}
