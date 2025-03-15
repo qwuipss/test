@@ -1,0 +1,38 @@
+name: Create tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_tag:
+        description: 'Version Tag'
+        required: true
+      commit:
+        description: 'Commit hash'
+        required: true
+        default: latest
+
+jobs:
+  update-client:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check Tag Version
+        run: |
+          if [[ ! $VERSION_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo Version Tag "$VERSION_TAG" does not match the regular expression "^[0-9]+\.[0-9]+\.[0-9]+$". Workflow aborted
+            exit 1
+          fi
+        env:
+          VERSION_TAG: ${{ github.event.inputs.version_tag }}
+
+      - name: Tag commit
+        run: |
+          if [ "$COMMIT_HASH" = "latest" ]; then
+            git tag v$VERSION_TAG
+          else
+            git tag v$VERSION_TAG $COMMIT_HASH
+          fi
+          git push origin --tags
+        env:
+          VERSION_TAG: ${{ github.event.inputs.version_tag }}

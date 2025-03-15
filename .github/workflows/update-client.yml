@@ -1,4 +1,4 @@
-name: Update client
+name: Update client and create Pull request
 
 on:
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
           version: latest
           includePreRelease: 'false'
 
-      - name: Setup Git config & new branch
+      - name: Setup Git config and checkout branch
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email 'github-actions-bot@users.noreply.github.com'

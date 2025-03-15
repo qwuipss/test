@@ -1,4 +1,4 @@
-﻿name: Publish package to NuGet
+﻿name: Create Release and publish package to NuGet
 
 on:
   workflow_dispatch:
@@ -17,6 +17,7 @@ jobs:
         run: |
           if [[ ! $VERSION_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo Version Tag "$VERSION_TAG" does not match the regular expression "^[0-9]+\.[0-9]+\.[0-9]+$". Workflow aborted
+            exit 1
           fi
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
