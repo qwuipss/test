@@ -16,6 +16,8 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
 
       - name: Check Version Tag format
         run: |
@@ -42,7 +44,6 @@ jobs:
 
       - name: Tag commit
         run: |
-          git pull origin main
           if [ "$COMMIT_HASH" = "latest" ]; then
             git tag v$VERSION_TAG
           else
