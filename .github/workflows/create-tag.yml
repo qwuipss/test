@@ -16,6 +16,10 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
+        if: ${{ github.event.inputs.commit_hash == latest }}
+        
+      - uses: actions/checkout@v4
+        if: ${{ github.event.inputs.commit_hash != latest }}
         with:
           fetch-depth: '0'
 
