@@ -27,7 +27,7 @@ jobs:
           pulls=$(gh api \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/qwuipss/test/pulls)
+            /repos/$GITHUB_REPOSITORY/pulls)
           if [ "$pulls" != "[]" ]; then
             echo Open Pull requests found. Workflow aborted.
             exit 1

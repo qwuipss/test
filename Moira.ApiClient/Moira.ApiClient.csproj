@@ -8,7 +8,7 @@
     </PropertyGroup>
 
     <PropertyGroup>
-        <!-- Version is auto bumped by push-nuget.yml workflow -->
+        <!-- Version is auto bumped by create-release-and-publish.yml workflow -->
         <Version>0.0.0</Version>
     </PropertyGroup>
 
@@ -17,9 +17,9 @@
         <Description>Client for Moira API</Description>
         <Authors>moira-alert</Authors>
         <PackageTags>moira moira-alert</PackageTags>
-        <PackageProjectUrl>https://github.com/qwuipss/test</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/qwuipss/test</RepositoryUrl>
-        <PackageIcon>moira-logo.png</PackageIcon>
+        <PackageProjectUrl>https://github.com/moira-alert/client-csharp</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/moira-alert/client-csharp</RepositoryUrl>
+        <PackageIcon>moira.png</PackageIcon>
         <PackageLicenseUrl>LICENSE</PackageLicenseUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
@@ -27,7 +27,7 @@
     <ItemGroup>
         <None Include="../LICENSE" Pack="true" PackagePath="/"/>
         <None Include="../README.md" Pack="true" PackagePath="/"/>
-        <None Include="../moira-logo.png" Pack="true" PackagePath="/"/>
+        <None Include="../moira.png" Pack="true" PackagePath="/"/>
     </ItemGroup>
 
     <ItemGroup>
