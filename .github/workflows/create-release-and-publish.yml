@@ -1,4 +1,4 @@
-﻿name: Create Release and publish package to NuGet
+﻿name: Create Release and Publish
 
 on:
   workflow_dispatch:
