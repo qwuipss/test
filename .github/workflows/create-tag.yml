@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       version_tag:
-        description: 'Version Tag'
+        description: "Version Tag (format: major.minor.patch)"
         required: true
       commit_hash:
-        description: 'Commit hash'
+        description: "Commit hash"
         required: true
         default: latest
 
@@ -17,15 +17,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check Tag Version
+      - name: Check Version Tag format
         run: |
           if [[ ! $VERSION_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo Version Tag \"$VERSION_TAG\" does not match the regular expression \"^[0-9]+\.[0-9]+\.[0-9]+$\". Workflow aborted
+            echo Version Tag \"$VERSION_TAG\" does not match the regular expression \"^[0-9]+\.[0-9]+\.[0-9]+$\". Workflow aborted.
             exit 1
           fi
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
-          
+
+      - name: Check is Version Tag exist
+      - run: |
+          if [ "$(git tag --list "${VERSION_TAG}")" ]; then 
+            echo Version Tag \"v$VERSION_TAG\" already exists. Workflow aborted.
+            exit 1
+          fi
+        env:
+          VERSION_TAG: ${{ github.event.inputs.version_tag }}
+
+      - name: Setup Git config
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions-bot@users.noreply.github.com"
+
       - name: Tag commit
         run: |
           git pull origin main
@@ -34,7 +48,11 @@ jobs:
           else
             git tag v$VERSION_TAG $COMMIT_HASH
           fi
-          git push origin v$VERSION_TAG
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
           COMMIT_HASH: ${{ github.event.inputs.commit_hash }}
+
+      - name: Push tag
+        run: git push --set-upstream origin main v$VERSION_TAG
+        env:
+          VERSION_TAG: ${{ github.event.inputs.version_tag }}

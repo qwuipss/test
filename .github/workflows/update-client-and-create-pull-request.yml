@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       swagger_hub_branch:
-        description: 'SwaggerHub Branch'
+        description: "SwaggerHub Branch"
         required: true
         default: master
 jobs:
@@ -26,12 +26,12 @@ jobs:
         uses: microsoft/setup-kiota@v0.5.0
         with:
           version: latest
-          includePreRelease: 'false'
+          includePreRelease: "false"
 
       - name: Setup Git config and checkout branch
         run: |
           git config --local user.name "github-actions[bot]"
-          git config --local user.email 'github-actions-bot@users.noreply.github.com'
+          git config --local user.email "github-actions-bot@users.noreply.github.com"
           BRANCH_NAME="update-client/$(date +%s)"
           git checkout -b $BRANCH_NAME
           echo "BRANCH_NAME=$BRANCH_NAME" >> "$GITHUB_ENV"
@@ -48,6 +48,6 @@ jobs:
         run: git push --set-upstream origin $BRANCH_NAME
 
       - name: Create Pull request
-        run: gh pr create -B main -H $BRANCH_NAME --title 'Update client' --body 'Created by GitHub Actions'
+        run: gh pr create -B main -H $BRANCH_NAME --title "Update client" --body "Created by GitHub Actions"
         env:
           GH_TOKEN: ${{ github.token }}
