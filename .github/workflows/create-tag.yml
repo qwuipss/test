@@ -37,7 +37,7 @@ jobs:
 
       - name: Check is Version Tag exist
         run: |
-          if [ "$(git tag --list "${VERSION_TAG}")" ]; then 
+          if [ "$(git tag --list "v${VERSION_TAG}")" ]; then 
             echo Version Tag \"v$VERSION_TAG\" already exists. Workflow aborted.
             exit 1
           fi
