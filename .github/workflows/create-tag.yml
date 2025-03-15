@@ -26,26 +26,15 @@ jobs:
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
           
-          #      - name: Tag commit
-          #        run: |
-          #          git pull origin main
-          #          if [ "$COMMIT_HASH" = "latest" ]; then
-          #            git tag v$VERSION_TAG
-          #          else
-          #            git tag v$VERSION_TAG $COMMIT_HASH
-          #          fi
-          #          git push origin v$VERSION_TAG
-          #        env:
-          #          VERSION_TAG: ${{ github.event.inputs.version_tag }}
-          #          COMMIT_HASH: ${{ github.event.inputs.commit_hash }}
-
       - name: Tag commit
-        uses: actions/github-script@v6
-        with:
-          script: |
-            github.rest.git.createRef({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                ref: 'refs/tags/v${{ github.event.inputs.version_tag }}',
-                sha: ${{ github.event.inputs.commit_hash }}
-            })
+        run: |
+          git pull origin main
+          if [ "$COMMIT_HASH" = "latest" ]; then
+            git tag v$VERSION_TAG
+          else
+            git tag v$VERSION_TAG $COMMIT_HASH
+          fi
+          git push origin v$VERSION_TAG
+        env:
+          VERSION_TAG: ${{ github.event.inputs.version_tag }}
+          COMMIT_HASH: ${{ github.event.inputs.commit_hash }}
