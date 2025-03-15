@@ -6,7 +6,7 @@ on:
       version_tag:
         description: 'Version Tag'
         required: true
-      commit:
+      commit_hash:
         description: 'Commit hash'
         required: true
         default: latest

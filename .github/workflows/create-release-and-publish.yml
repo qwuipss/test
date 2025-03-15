@@ -1,4 +1,4 @@
-﻿name: Create Release and Publish
+﻿name: Create Release and Publish package
 
 on:
   workflow_dispatch:
