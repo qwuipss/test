@@ -16,7 +16,7 @@ jobs:
       - name: Check Tag Version
         run: |
           if [[ ! $VERSION_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo Version Tag "$VERSION_TAG" does not match the regular expression "^[0-9]+\.[0-9]+\.[0-9]+$"
+            echo Version Tag "$VERSION_TAG" does not match the regular expression "^[0-9]+\.[0-9]+\.[0-9]+$". Workflow aborted
           fi
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
@@ -62,8 +62,7 @@ jobs:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
 
       - name: Push package to NuGet.org
-        run: |
-          dotnet nuget push ./.temp/Moira.ApiClient.$VERSION_TAG.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./.temp/Moira.ApiClient.$VERSION_TAG.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
