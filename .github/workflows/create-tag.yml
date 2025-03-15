@@ -16,13 +16,13 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v4
-        if: github.event.inputs.commit_hash == latest
+        if: github.event.inputs.commit_hash == 'latest'
 
       - uses: actions/checkout@v4
-        if: github.event.inputs.commit_hash != latest
+        if: github.event.inputs.commit_hash != 'latest'
         with:
-          fetch-depth: '0'
-
+          ref: ${{ github.event.inputs.commit_hash }} 
+            
       - name: Check Version Tag format
         run: |
           if [[ ! $VERSION_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
