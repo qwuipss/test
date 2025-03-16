@@ -12,13 +12,22 @@ on:
         default: latest
 
 jobs:
-  update-client:
+  create-tag:
     runs-on: ubuntu-22.04
     steps:
+      - name: Check workflow run branch
+        run: |
+          if [ ! "$RUN_BRANCH" = "refs/heads/main" ]; then
+            echo Workflow should be run only on main branch. Workflow aborted.
+            exit 1
+          fi
+        env:
+          RUN_BRANCH: ${{ github.ref }}
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: '0'
-            
+
       - name: Check Version Tag format
         run: |
           if [[ ! $VERSION_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then

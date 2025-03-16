@@ -8,9 +8,18 @@ on:
         required: true
 
 jobs:
-  build:
+  create-release-and-publish:
     runs-on: ubuntu-22.04
     steps:
+      - name: Check workflow run branch
+        run: |
+          if [ ! "$RUN_BRANCH" = "refs/heads/main" ]; then
+            echo Workflow should be run only on main branch. Workflow aborted.
+            exit 1
+          fi
+        env:
+          RUN_BRANCH: ${{ github.ref }}
+
       - uses: actions/checkout@v4
 
       - name: Check Version Tag format
@@ -24,11 +33,11 @@ jobs:
 
       - name: Check for open Pull requests
         run: |
-          pulls=$(gh api \
+          $PULLS=$(gh api \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             /repos/$GITHUB_REPOSITORY/pulls)
-          if [ "$pulls" != "[]" ]; then
+          if [ "$PULLS" != "[]" ]; then
             echo Open Pull requests found. Workflow aborted.
             exit 1
           fi
