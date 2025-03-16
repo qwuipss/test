@@ -43,6 +43,7 @@ jobs:
           if [ 0 -ne $(git merge-base --is-ancestor $COMMIT_HASH HEAD) ]; then 
             echo Specified $COMMIT_HASH is not ancestor of main. Workflow aborted.
             exit 1
+          fi
         env:
           COMMIT_HASH: ${{ github.event.inputs.commit_hash }}
 
