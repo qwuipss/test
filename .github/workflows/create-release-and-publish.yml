@@ -14,7 +14,7 @@ jobs:
       - name: Check workflow run ref
         run: |
           if [ "$RUN_REF" != "refs/heads/main" ]; then
-            echo Workflow should be run only on main branch. Workflow aborted.
+            echo Workflow should only be run on main branch. Workflow aborted.
             exit 1
           fi
         env:
