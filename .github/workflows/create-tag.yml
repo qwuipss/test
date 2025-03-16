@@ -15,14 +15,14 @@ jobs:
   create-tag:
     runs-on: ubuntu-22.04
     steps:
-      - name: Check workflow run branch
+      - name: Check workflow run ref
         run: |
-          if [ ! "$RUN_BRANCH" = "refs/heads/main" ]; then
+          if [ ! "$RUN_REF" = "refs/heads/main" ]; then
             echo Workflow should be run only on main branch. Workflow aborted.
             exit 1
           fi
         env:
-          RUN_BRANCH: ${{ github.ref }}
+          RUN_REF: ${{ github.ref }}
 
       - uses: actions/checkout@v4
         with:
@@ -36,6 +36,15 @@ jobs:
           fi
         env:
           VERSION_TAG: ${{ github.event.inputs.version_tag }}
+
+      - name: Check is commit ancestor of main
+        if: github.event.inputs.commit_hash != 'latest'
+        run: |
+          if [ 0 -ne $(git merge-base --is-ancestor $COMMIT_HASH HEAD) ]; then 
+            echo Specified $COMMIT_HASH is not ancestor of main. Workflow aborted.
+            exit 1
+        env:
+          COMMIT_HASH: ${{ github.event.inputs.commit_hash }}
 
       - name: Check is Version Tag exist
         run: |
