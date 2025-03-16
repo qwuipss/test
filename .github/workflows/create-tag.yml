@@ -40,7 +40,7 @@ jobs:
       - name: Check is commit ancestor of main HEAD
         if: github.event.inputs.commit_hash != 'latest'
         run: |
-          if [ ! $(git merge-base --is-ancestor $COMMIT_HASH HEAD 2> /dev/null) ]; then
+          if [ $(git merge-base --is-ancestor $COMMIT_HASH HEAD 2> /dev/null) ]; then
             echo Specified commit hash \"$COMMIT_HASH\" is not ancestor of main HEAD. Workflow aborted.
             exit 1
           fi
