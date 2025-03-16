@@ -1,8 +1,8 @@
 {
-  "descriptionHash": "7683BD4EBD274529FC17D95C8C363897EC7779AF3E5CC55CFEF8490F62068BD2ACDD109C504CF8AB10E5606783AB3ABB0F74DCFA45B13802FE8BB70984213826",
+  "descriptionHash": "E9FFD7B00381B3DC24DA6A95D271AF1351192C244B54092270EFC70AAF3CA834916BB7B6A6563191B39BEA6F5283B83ED3095CAE5BB2837D819CB1F7C11F2DCD",
   "descriptionLocation": "../.temp/moira-openapi-spec.yaml",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.24.0",
+  "kiotaVersion": "1.24.1",
   "clientClassName": "MoiraApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "Moira.ApiClient",
