@@ -43,7 +43,7 @@ jobs:
           set +e
           git merge-base --is-ancestor $COMMIT_HASH HEAD 2> /dev/null
           set -e
-          if [ "$?" = "1" ]; then
+          if [ $? -eq 1 ]; then
             echo Specified commit hash \"$COMMIT_HASH\" is not ancestor of main HEAD. Workflow aborted.
             exit 1
           fi
