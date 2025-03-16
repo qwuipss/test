@@ -45,7 +45,7 @@ jobs:
             IS_ANCESTOR=$?
             set -e
             if [ $IS_ANCESTOR -eq 1 ]; then
-            echo Specified commit hash \"$COMMIT_HASH\" is not ancestor of main HEAD. Workflow aborted.
+              echo Specified commit hash \"$COMMIT_HASH\" is not ancestor of main HEAD. Workflow aborted.
             exit 1
           fi
         env:
