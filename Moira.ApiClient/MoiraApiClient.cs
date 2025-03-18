@@ -80,7 +80,7 @@ namespace Moira.ApiClient
         public global::Moira.ApiClient.User.UserRequestBuilder User
         {
             get => new global::Moira.ApiClient.User.UserRequestBuilder(PathParameters, RequestAdapter);
-        }
+        } 
         /// <summary>
         /// Instantiates a new <see cref="global::Moira.ApiClient.MoiraApiClient"/> and sets the default values.
         /// </summary>
