@@ -19,13 +19,12 @@
         <PackageTags>moira moira-alert</PackageTags>
         <PackageProjectUrl>https://github.com/moira-alert/client-csharp</PackageProjectUrl>
         <RepositoryUrl>https://github.com/moira-alert/client-csharp</RepositoryUrl>
+        <PackageLicenseUrl>https://github.com/moira-alert/client-csharp/blob/main/LICENSE</PackageLicenseUrl>
         <PackageIcon>moira.png</PackageIcon>
-        <PackageLicenseUrl>LICENSE</PackageLicenseUrl>
         <PackageReadmeFile>README.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
-        <None Include="../LICENSE" Pack="true" PackagePath="/"/>
         <None Include="../README.md" Pack="true" PackagePath="/"/>
         <None Include="../moira.png" Pack="true" PackagePath="/"/>
     </ItemGroup>
