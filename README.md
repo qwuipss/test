@@ -1,6 +1,5 @@
-# C# API Client for Moira
+# C# API Client for Moira [![NuGet](https://img.shields.io/nuget/v/Moira.ApiClient.svg)](https://www.nuget.org/packages/Moira.ApiClient)
 
-[![NuGet](https://img.shields.io/nuget/v/Moira.ApiClient.svg)](https://www.nuget.org/packages/Moira.ApiClient)
 If you're new here, better check out our main [README](https://github.com/moira-alert/moira/blob/master/README.md).
 
 ## Overview
