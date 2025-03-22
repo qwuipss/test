@@ -89,7 +89,7 @@ jobs:
 
       - name: Switch to commit
         if: github.event.inputs.commit_hash != 'latest'
-        run: git checkout $COMMIT_HASH && ls
+        run: git reset $COMMIT_HASH --hard && ls
         env:
           COMMIT_HASH: ${{ github.event.inputs.commit_hash }}
 
