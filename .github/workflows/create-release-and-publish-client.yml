@@ -86,6 +86,8 @@ jobs:
     needs: create-tag
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: '0'
 
       - name: Switch to commit
         if: github.event.inputs.commit_hash != 'latest'
